@@ -1,110 +1,545 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Secret game hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secret Game Hub</title>
+
+    <meta name="description"
+        content="Secret Game Hub - Discover games, gaming projects, Android resources, updates and community content.">
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: black;
+            background: #050505;
             color: white;
-            font-family: Arial;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+
+        header {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 30px 20px;
+            background:
+                radial-gradient(circle at top, #17245c, #050505 55%);
         }
 
-        h1 {
-            color: blue;
-            font-size: 40px;
+        header h1 {
+            color: #4d7cff;
+            font-size: clamp(42px, 8vw, 80px);
             font-weight: bold;
-            margin-top: 50px;
-            padding: 20px;
-            border: 2px solid white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px gray;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 2px 2px 5px gray;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 25px #315cff;
+            margin-bottom: 20px;
         }
 
-        button {
-            background-color: blue;
+        header p {
+            max-width: 700px;
+            color: #d5d5d5;
+            font-size: 19px;
+        }
+
+        .header-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 30px;
+            background: #315cff;
             color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        button:hover {
-            background-color: green;
+        .header-button:hover {
+            background: #5478ff;
+            transform: translateY(-3px);
+        }
+
+        /* MAIN */
+
+        main {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
         }
 
         section {
-            margin: 30px auto;
-            padding: 20px;
-            width: 80%;
-            border: 1px solid gray;
-            border-radius: 10px;
+            margin: 50px auto;
+            padding: 35px;
+            background: #101010;
+            border: 1px solid #292929;
+            border-radius: 20px;
         }
 
-        a {
-            color: cyan;
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #5c7dff;
+        }
+
+        section h3 {
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        /* GAME CARD */
+
+        .game-card {
+            overflow: hidden;
+            padding: 20px;
+            background: #0d0d0d;
+            border: 1px solid #303030;
+            box-shadow: 0 0 30px rgba(49, 92, 255, 0.15);
+        }
+
+        .game-card img {
+            display: block;
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .game-info {
+            text-align: center;
+            padding: 25px 10px 10px;
+        }
+
+        .game-info h2 {
+            font-size: 38px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .game-description {
+            max-width: 750px;
+            margin: auto;
+            color: #c8c8c8;
+        }
+
+        .game-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .game-details span {
+            padding: 10px 16px;
+            background: #181818;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #ddd;
+        }
+
+        /* BUTTON */
+
+        .download-button {
+            display: inline-block;
+            background: #315cff;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .download-button:hover {
+            background: #4c70ff;
+            transform: scale(1.05);
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            text-align: left;
+        }
+
+        .welcome p {
+            color: #c9c9c9;
+            margin-bottom: 20px;
+        }
+
+        .welcome strong {
+            color: white;
+        }
+
+        .disclaimer {
+            font-size: 13px;
+            color: #888 !important;
+            border-top: 1px solid #292929;
+            padding-top: 20px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .feature {
+            padding: 20px;
+            background: #171717;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            border-color: #315cff;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+            color: white;
+        }
+
+        .feature p {
+            color: #aaa;
+        }
+
+        /* COMMUNITY */
+
+        .community {
+            text-align: center;
+        }
+
+        .discord-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 13px 25px;
+            background: #5865F2;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .discord-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #777;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                min-height: 75vh;
+            }
+
+            header h1 {
+                font-size: 42px;
+                letter-spacing: 1px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            section {
+                padding: 22px;
+                margin: 30px auto;
+            }
+
+            section h2 {
+                font-size: 27px;
+            }
+
+            .game-info h2 {
+                font-size: 30px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .game-details {
+                flex-direction: column;
+            }
+
+            .game-details span {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- HERO -->
+
     <header>
-        <h1>Secret game hub</h1>
-        <p>Welcome to the Mini Militia game website!</p>
+
+        <h1>Secret Game Hub</h1>
+
+        <p>
+            Discover games, gaming projects, Android resources,
+            updates and interesting community creations.
+        </p>
+
+        <a href="#game" class="header-button">
+            Explore Game
+        </a>
+
     </header>
+
 
     <main>
 
-    <section>
-     <img src="game.png" alt="Mini Militia game screenshot" width="80%">
-   </section>
+        <!-- GAME -->
 
-        <section>
-            <h2>About the Game</h2>
+        <section class="game-card" id="game">
+
+            <img src="game.png"
+                alt="Mini Militia game screenshot">
+
+            <div class="game-info">
+
+                <h2>Mini Militia</h2>
+
+                <p class="game-description">
+                    Enter the battlefield and experience fast-paced
+                    multiplayer action. Explore different maps,
+                    try different game modes and challenge yourself
+                    in survival gameplay.
+                </p>
+
+                <div class="game-details">
+
+                    <span>🎮 Multiplayer</span>
+
+                    <span>🗺️ Multiple Maps</span>
+
+                    <span>⚔️ Survival Mode</span>
+
+                    <span>📱 Android</span>
+
+                </div>
+
+                <a href="game.apk" download>
+                    <button class="download-button">
+                        Download Game
+                    </button>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <h2>Welcome to Secret Game Hub</h2>
+
             <p>
-                Mini Militia is a fast-paced 2D multiplayer
-                combat game with different maps and game modes.
+                Welcome to <strong>Secret Game Hub</strong> — a place
+                created for gamers, explorers and people who enjoy
+                discovering something different.
             </p>
+
+            <p>
+                Our goal is to bring interesting games, useful gaming
+                resources, community projects and Android gaming
+                content together in one easy-to-explore website.
+            </p>
+
+            <p>
+                Whether you are looking for something new to play,
+                want to discover an interesting game project or simply
+                want to explore what the gaming community has created,
+                you are welcome here.
+            </p>
+
+            <h3>What Makes Secret Game Hub Different?</h3>
+
+            <p>
+                We are not trying to become another website filled
+                with thousands of random downloads. Instead, the goal
+                is to gradually build a collection of projects and
+                games that are genuinely interesting.
+            </p>
+
+            <p>
+                Some projects may be simple, while others may be
+                experimental, creative or completely different from
+                what you normally find.
+            </p>
+
+            <p>
+                Secret Game Hub is also a learning project. Behind
+                the scenes, this website is being developed using
+                HTML, CSS, Git, GitHub and GitHub Pages.
+            </p>
+
+            <h3>Explore. Discover. Play.</h3>
+
+            <p>
+                If you enjoy discovering games and projects that you
+                have never tried before, take your time and explore
+                Secret Game Hub.
+            </p>
+
+            <p>
+                Read the information provided with each project,
+                check compatibility and requirements, and only install
+                software from sources you trust.
+            </p>
+
+            <p>
+                <strong>
+                    Secret Game Hub is still growing.
+                </strong>
+                New ideas, projects, features and improvements will
+                be added as the website develops.
+            </p>
+
+            <p>
+                Thank you for visiting
+                <strong>Secret Game Hub</strong>.
+            </p>
+
+            <p>
+                <strong>
+                    Explore something new. Discover interesting
+                    projects. Play responsibly. And most importantly —
+                    have fun!
+                </strong>
+            </p>
+
+            <p class="disclaimer">
+                Secret Game Hub is an independent project and is not
+                affiliated with or endorsed by game developers,
+                publishers or trademark owners unless explicitly
+                stated.
+            </p>
+
         </section>
 
+
+        <!-- FEATURES -->
+
         <section>
-            <h2>Features</h2>
-            <p>Multiplayer gameplay</p>
-            <p>Different maps</p>
-            <p>Offline Survival mode</p>
-            <p>Multiple game modes</p>
+
+            <h2>Game Features</h2>
+
+            <div class="features">
+
+                <div class="feature">
+                    <h3>🎮 Multiplayer</h3>
+                    <p>
+                        Enjoy multiplayer gameplay and compete
+                        with other players.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>🗺️ Different Maps</h3>
+                    <p>
+                        Explore different environments and
+                        battle locations.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>⚔️ Survival Mode</h3>
+                    <p>
+                        Test your skills and see how long
+                        you can survive.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>🔥 Multiple Modes</h3>
+                    <p>
+                        Try different gameplay modes and
+                        discover new challenges.
+                    </p>
+                </div>
+
+            </div>
+
         </section>
 
-        <section>
-            <h2>Download</h2>
 
-            <a href="game.apk" download>
-                <button>Download Game</button>
-            </a>
+        <!-- COMMUNITY -->
 
-        </section>
+        <section class="community">
 
-        <section>
-            <h2>Community</h2>
+            <h2>Join the Community</h2>
 
-            <a href="YOUR_DISCORD_LINK">
-                Join our Discord
+            <p>
+                More gaming projects and updates will be added
+                as Secret Game Hub continues to grow.
+            </p>
+
+            <a href="YOUR_DISCORD_LINK"
+                class="discord-button">
+                Join Our Discord
             </a>
 
         </section>
 
     </main>
 
+
+    <!-- FOOTER -->
+
     <footer>
-        <p>© 2026 Secret game hub</p>
+
+        <p>
+            © 2026 Secret Game Hub
+        </p>
+
+        <p>
+            Built with HTML, CSS and GitHub Pages.
+        </p>
+
     </footer>
 
 </body>
